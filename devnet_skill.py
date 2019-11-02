@@ -4,7 +4,10 @@ Purpose:
     lambda hander for the DevNet Alexa Data Center Skill
 Author:
     John McDonough (jomcdono@cisco.com)
-    Cisco Systems, Inc.
+     Cisco Systems, Inc.
+CoAuthor:    
+    Andrés Guevara y Matheo López
+    UDLA   
 """
 from __future__ import print_function
 
@@ -12,7 +15,7 @@ from __future__ import print_function
 # Import the UCS Management functions
 import ucsm_operations
 
-# --------------- Helpers that build all of the responses ----------------------
+# --------------- Ayudantes que construyen todas las respuestas ----------------------
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
@@ -43,33 +46,33 @@ def build_response(session_attributes, speechlet_response):
     }
 
 
-# --------------- Functions that control the skill's behavior ------------------
+# --------------- Funciones que controlan el comportamiento de la habilidad ------------------
 
 def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Welcome to the DevNet Alexa Skill for UCS Managment." \
-                    "You can say things like, What is my fault count?" \
-                    "Or you can say Add V Lan 100." \
-                    "Or you can say Provision a server."
-    # If the user either does not reply to the welcome message or says something
-    # that is not understood, they will be prompted again with this text.
-    reprompt_text = "Did you want to do something with, or know something about your UCS System?"
+    speech_output = "Bienvenido a la Habilidad DevNet Alexa para la Gestión de UCS" \
+                    "Se puede decir cosas como: ¿Cuál es el recuento de mi culpa?" \
+                    "O se puede decir Añadir V Lan 100" \
+                    "O puedes decir Aprovisionar un servidor"
+    # Si el usuario no responde al mensaje de bienvenida o dice algo
+    # que no se entiende, se les volverá a preguntar con este texto.
+    reprompt_text = "¿Desea hacer algo o saber algo sobre su sistema UCS?"
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def handle_session_end_request():
-    card_title = "Session Ended"
-    speech_output = "Thank you for using the Alexa Skill for UCS Management."
+    card_title = "Sesión finalizada"
+    speech_output = "Gracias por usar Alexa Skill para la administración de UCS"
 
-    # Setting this to true ends the session and exits the skill.
+    # Establecer esto en verdadero finaliza la sesión y sale de la habilidad.
     should_end_session = True
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
-# Get the UCS Faults
+# Obtenga las fallas UCS
 def get_faults(intent, session):
     session_attributes = {}
     reprompt_text = None
@@ -80,7 +83,7 @@ def get_faults(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         intent['name'], speech_output, reprompt_text, should_end_session))
 
-# Add a UCS VLAN
+# Agregar una VLAN UCS
 def add_vlan(intent, session):
     session_attributes = {}
     reprompt_text = None
@@ -91,7 +94,7 @@ def add_vlan(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         intent['name'], speech_output, reprompt_text, should_end_session))
 
-# Remove a UCS VLAN
+# Eliminar una VLAN UCS
 def remove_vlan(intent, session):
     session_attributes = {}
     reprompt_text = None
@@ -102,7 +105,7 @@ def remove_vlan(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         intent['name'], speech_output, reprompt_text, should_end_session))
 
-# Create and Associate a Service Profile to an available server
+# Crear y asociar un perfil de servicio a un servidor disponible
 def set_server(intent, session):
     session_attributes = {}
     reprompt_text = None
@@ -113,7 +116,7 @@ def set_server(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         intent['name'], speech_output, reprompt_text, should_end_session))
 
-# --------------- Events ------------------
+# --------------- Eventos ------------------
 
 def on_session_started(session_started_request, session):
     """ Called when the session starts """
@@ -129,7 +132,7 @@ def on_launch(launch_request, session):
 
     print("on_launch requestId=" + launch_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-    # Dispatch to your skill's launch
+    # Despacho para el lanzamiento de tu habilidad
     return get_welcome_response()
 
 
@@ -142,14 +145,14 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
 
-    # Dispatch to your skill's intent handlers
-    if intent_name == "GetFaults":         # Entry point for the GetFaults intent that you created
+    # Despacho a los manejadores de intención de tu habilidad
+    if intent_name == "GetFaults":         # Punto de entrada para la intención GetFaults que creó
         return get_faults(intent, session)
-    elif intent_name == "AddVlan":         # Entry point for the AddVlan intent that you created
+    elif intent_name == "AddVlan":         # Punto de entrada para la intención AddVlan que creó
         return add_vlan(intent, session)
-    elif intent_name == "RemoveVlan":      # Entry point for the RemoveVlan intent that you may have created :)
+    elif intent_name == "RemoveVlan":      # Punto de entrada para la intención RemoveVlan que puede haber creado :)
         return remove_vlan(intent, session)
-    elif intent_name == "ProvisionServer": # Entry point for the ProvisionServer intent that you created
+    elif intent_name == "ProvisionServer": # Punto de entrada para la intención de ProvisionServer que creó
         return set_server(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
@@ -166,10 +169,10 @@ def on_session_ended(session_ended_request, session):
     """
     print("on_session_ended requestId=" + session_ended_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-    # add cleanup logic here
+    # agregar lógica de limpieza aquí
 
 
-# --------------- Main handler ------------------
+# --------------- Controlador principal ------------------
 
 def lambda_handler(event, context):
     """ Route the incoming request based on type (LaunchRequest, IntentRequest,
