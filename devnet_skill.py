@@ -12,7 +12,7 @@ CoAuthor:
 from __future__ import print_function
 
 
-# Import the UCS Management functions
+# Importar las funciones de gestión de UCS
 import ucsm_operations
 
 # --------------- Ayudantes que construyen todas las respuestas ----------------------
