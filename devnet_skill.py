@@ -52,10 +52,10 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Bienvenido a la Habilidad DevNet Alexa para la Gestión del UCS" \
+    speech_output = "Bienvenido a la Habilidad DevNet Alexa para la Gestión del UCS." \
                     "Se puede decir cosas como: ¿Cuál es el recuento de mi cuenta de fallas?" \
-                    "O se puede decir Añadir V Lan 100" \
-                    "O puedes decir Aprovisionar un servidor"
+                    "O se puede decir Añadir Vi Lan 100." \
+                    "O puedes decir Aprovisionar un servidor."
     # Si el usuario no responde al mensaje de bienvenida o dice algo
     # que no se entiende, se les volverá a preguntar con este texto.
     reprompt_text = "¿Desea hacer algo o saber algo sobre su sistema UCS?"
@@ -65,7 +65,7 @@ def get_welcome_response():
 
 def handle_session_end_request():
     card_title = "Sesión finalizada"
-    speech_output = "Gracias por usar Alexa Skill para la administración de UCS"
+    speech_output = "Gracias por usar Alexa Skill para la administración de UCS."
 
     # Establecer esto en verdadero finaliza la sesión y sale de la habilidad.
     should_end_session = True
