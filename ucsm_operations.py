@@ -28,13 +28,13 @@ def add_ucs_vlan(vlan_id):
     
     if vlan_id == "1":
         message = ("Para la operación de agregar Vlan de UCS Manager solicitada, " +
-            "Vlan 1 puede recibir nombres adicionales, sin embargo, esta habilidad no permite ese procedimiento.")
+            "Vi Lan 1 puede recibir nombres adicionales, sin embargo, esta habilidad no permite ese procedimiento.")
         return message
     elif ((vlan_id_num <= 1) or
         (vlan_id_num >= 4030 and vlan_id_num <= 4048) or
         (vlan_id_num > 4093)):
-        message = ("Para la operación de agregar Vlan de UCS Manager solicitada, " + 
-            "el ID de la Vlan proporcionado " + vlan_id + ", no está permitido.")
+        message = ("Para la operación de agregar Vi Lan de UCS Manager solicitada, " + 
+            "el ID de la Vi Lan proporcionado " + vlan_id + ", no está permitido.")
         return message
 
     ucsm_login()
@@ -58,22 +58,22 @@ def add_ucs_vlan(vlan_id):
         response = handle.query_dn("fabric/lan/net-vlan" + vlan_id)
 
         if response and response.name == "vlan" + vlan_id:
-            message = "V Lan " + vlan_id + " se ha agregado al Administrador de UCS."
+            message = "Vi Lan " + vlan_id + " se ha agregado al Administrador de UCS."
         else:
-            message = "V Lan " + vlan_id + " no se agregó al Administrador de UCS."
+            message = "Vi Lan " + vlan_id + " no se agregó al Administrador de UCS."
     else:
-        message = "V Lan " + vlan_id + " ya existe en UCS Manager."
+        message = "Vi Lan " + vlan_id + " ya existe en UCS Manager."
     
     ucsm_logout()
 
-    return "Operación de agregación de UCS Manager Vlan solicitada, " + message
+    return "Operación de agregación de UCS Manager Vi Lan solicitada, " + message
 
 # Eliminar VLAN del UCS Manager
 def remove_ucs_vlan(vlan_id):
     
     if vlan_id == "1":
-        message = (" Operación de eliminación de UCS Manager V Lan solicitada, " + 
-            "Esta habilidad no admite la eliminación de V Lan 1.")
+        message = (" Operación de eliminación de UCS Manager Vi Lan solicitada, " + 
+            "Esta habilidad no admite la eliminación de Vi Lan 1.")
         return message
 
     ucsm_login()
@@ -93,15 +93,15 @@ def remove_ucs_vlan(vlan_id):
         response = handle.query_dn("fabric/lan/net-vlan" + vlan_id)
 
         if not response:
-            message = "V Lan " + vlan_id + " se ha eliminado del Administrador de UCS."
+            message = "Vi Lan " + vlan_id + " se ha eliminado del Administrador de UCS."
         else:
-            message = "V Lan " + vlan_id + " no se eliminó del Administrador de UCS ."
+            message = "Vi Lan " + vlan_id + " no se eliminó del Administrador de UCS ."
     else:
-        message = "V Lan " + vlan_id + " no existe en UCS Manager."
+        message = "Vi Lan " + vlan_id + " no existe en UCS Manager."
     
     ucsm_logout()
 
-    return "Operación de eliminación de UCS Manager V Lan solicitada, " + message
+    return "Operación de eliminación de UCS Manager Vi Lan solicitada, " + message
 
 # Recuperar recuentos de fallas para fallas críticas, mayores, menores y de advertencia del Administrador UCS
 def get_ucs_faults():
