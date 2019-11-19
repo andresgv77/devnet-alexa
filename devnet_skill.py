@@ -53,7 +53,7 @@ def get_welcome_response():
     session_attributes = {}
     card_title = "Welcome"
     speech_output = "Bienvenido a la Habilidad DevNet Alexa para la Gestión del UCS." \
-                    "Se puede decir cosas como: ¿Cuál es el recuento de mi cuenta de fallas?" \
+                    "Se puede decir cosas como: ¿Cuál es el recuento de fallas?" \
                     "O se puede decir Añadir Vi Lan 100." \
                     "O puedes decir Aprovisionar un servidor."
     # Si el usuario no responde al mensaje de bienvenida o dice algo
