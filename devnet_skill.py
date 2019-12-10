@@ -50,6 +50,7 @@ def get_welcome_response():
     session_attributes = {}
     card_title = "Welcome"
     speech_output = "Welcome to the DevNet Alexa Skill for UCS Managment." \
+                    "Hi Andres and Matheo." \
                     "You can say things like, What is my fault count?" \
                     "Or you can say Add V Lan 100." \
                     "Or you can say Provision a server."
