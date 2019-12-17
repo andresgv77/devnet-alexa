@@ -52,7 +52,7 @@ def get_welcome_response():
     speech_output = "Welcome to the DevNet Alexa Skill for UCS Managment." \
                     "Hi Andres and Matheo." \
                     "You can say things like, What is my fault count?" \
-                    "Or you can say Add V Lan 100." \
+                    "Or you can say Add V Lan 200." \
                     "Or you can say Provision a server."
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
