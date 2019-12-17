@@ -257,7 +257,7 @@ def ucsm_login():
     global handle, status
 
     username = "admin"
-    password = "password"
+    password = "Udla_2016"
 
     try:
         handle = UcsHandle(ucsmhost,username,password)
